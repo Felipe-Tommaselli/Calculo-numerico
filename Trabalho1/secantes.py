@@ -5,8 +5,8 @@ Pedro Cavalini- 11801007
 '''
 
 def main(): 
-    arquivo = open("newton_saida.txt", "w")
-    arquivo.write("Método de Newton:\n")
+    arquivo = open("secantes_saida.txt", "w")
+    arquivo.write("Método das Secantes:\n")
 
     k = 0
     xk = -1.0 
@@ -18,7 +18,7 @@ def main():
     arquivo.write("No intervalo [-1, 0]\n")
     arquivo.write("\tk\t     xk\t\t   f(xk)\t   erro\n")
 
-    while(mod > 0.000001 and k <= 10):
+    while(mod > 0.000001 and k <= 50):
         
         print(k)
         fxk = funcao(xk)
@@ -28,18 +28,20 @@ def main():
         arquivo.write(str(xk) + "\t")
         arquivo.write(str(fxk) + "\t")
         arquivo.write(str(abs(xk - erro)) + "\n")
+
+        # xrr == x (k - 2)
+        xrr = xr 
+        # xr == x (k-1)
+        xr = xk 
         
-        xrr = xr # xrr == x sub(k - 2)
-        xr = xk # xr == x sub(k-1)
-        
-        xk = (funcao(xr)*xrr - funcao(xrr)*xr)/funcao(xr) - funcao(xrr)
+        # atualiza xk com base no xr e xrr
+        xk = (funcao(xr)*xrr - funcao(xrr)*xr)/(funcao(xr) - funcao(xrr))
         k += 1
         mod = abs(xk - xr)
     
     arquivo.write("\t" + str(k) + "\t")
     arquivo.write(str(xk) + "\t")
-    arquivo.write(str(fx) + "\t")
-    arquivo.write(str(dx) + "\t")
+    arquivo.write(str(fxk) + "\t")
     arquivo.write(str(abs(xk - erro)) + "\n")
 
     arquivo.close()

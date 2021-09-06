@@ -4,14 +4,12 @@ Gianluca Capezzuto Sardinha- 11876933
 Pedro Cavalini- 11801007
 '''
 
-import matplotlib.pyplot as plt
-
 def main(): 
-    arquivo = open("secantes_saida.txt", "w")
-    arquivo.write("Método das Secantes:\n")
+    arquivo = open("newton_saida.txt", "w")
+    arquivo.write("Método de Newton:\n")
 
     k = 0
-    xk = -1.0000000000000000
+    xk = -1
     xr = 0
     mod = abs(xk - xr)
     erro = 1./7.
@@ -27,7 +25,7 @@ def main():
         arquivo.write(str(xk) + "\t")
         arquivo.write(str(fx) + "\t")
         arquivo.write(str(dx) + "\t")
-        arquivo.write(str(abs(xk - erro)) + "\n")
+        arquivo.write(str(abs(xk-erro)) + "\n")
 
         xr = xk 
         xk = xk - (fx / dx)
@@ -38,10 +36,10 @@ def main():
     arquivo.write(str(xk) + "\t")
     arquivo.write(str(fx) + "\t")
     arquivo.write(str(dx) + "\t")
-    arquivo.write(str(abs(xk - erro)) + "\n")
+    arquivo.write(str(abs(xk-erro)) + "\n")
 
     arquivo.close()
-
+    
 def funcao(x): 
     fx = 3*(x**5) - 9*(x**4) + 2*(x**3) - 6*(x**2) - (x) + 3
     return fx
