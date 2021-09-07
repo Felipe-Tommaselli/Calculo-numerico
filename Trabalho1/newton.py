@@ -14,20 +14,22 @@ def main():
     xk = -1 # tendo o primeiro intervalo de [-1, 0] e estabelecendo xk = -1 e xr = 0
     xr = 0 # xr, sendo r = k - 1 
     mod = abs(xk - xr)
-    erro = 1./7.
+    raiz = -pow(3, 0.5)/3.
 
     arquivo.write("No intervalo [-1, 0]\n")
     arquivo.write("\tk\t     xk\t\t   f(xk)\t   f'(xk)\t   erro\n")
 
-    while(mod > 0.000001 and k <= int(maxiter)): # enquanto não for alcançada a precisão desejada e
-        fx = funcao(xk)                    # k for menor que a maxiter o loop acontece
+    # enquanto não for alcançada a precisão desejada e 
+    # k for menor que a maxiter o loop acontece
+    while(mod > 0.000001 and k <= int(maxiter)): 
+        fx = funcao(xk)
         dx = derivada(xk)
 
         arquivo.write("\t" + str(k) + "\t")
         arquivo.write(str(xk) + "\t\t")
         arquivo.write(str(fx) + "\t")
         arquivo.write(str(dx) + "\t")
-        arquivo.write(str(abs(xk-erro)) + "\n")
+        arquivo.write(str(abs(xk - raiz)) + "\n")
 
         xr = xk # xr atribui o valor de xk, ou seja, x(k-1) atribui o valor de xk 
         xk = xk - (fx / dx) # xk atribui o próximo valor a ser calculado
@@ -39,7 +41,7 @@ def main():
     arquivo.write(str(xk) + "\t\t")
     arquivo.write(str(fx) + "\t")
     arquivo.write(str(dx) + "\t")
-    arquivo.write(str(abs(xk-erro)) + "\n")
+    arquivo.write(str(abs(xk - raiz)) + "\n")
 
     arquivo.close()
 
