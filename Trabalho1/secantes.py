@@ -20,7 +20,7 @@ def main():
 
     # cabeçalho do arquivo texto
     arquivo.write("No intervalo [-1,0]\n")
-    arquivo.write("\tk\t     xk\t\t   f(xk)\t   erro\n")
+    arquivo.write("\tk\t     xk\t\t\t\t   f(xk)\t\t\t\t   erro\n")
 
     # enquanto não for alcançada a precisão desejada e 
     # k for menor que a maxiter o loop acontece
@@ -31,7 +31,7 @@ def main():
     arquivo.write("\t" + str(k) + "\t")
     arquivo.write(str(xk) + "\t")
     arquivo.write(str(funcao(xk)) + "\t")
-    arquivo.write(str(abs(xk - raiz)) + "\n")
+    arquivo.write(str(abs(float(xk) - raiz)) + "\n")
 
     #* INTERVALO [0,1]
 
@@ -42,7 +42,7 @@ def main():
     raiz = pow(3, 0.5)/3.
     
     arquivo.write("\n\nNo intervalo [0,1]\n")
-    arquivo.write("\tk\t     xk\t\t   f(xk)\t   erro\n")
+    arquivo.write("\tk\t     xk\t\t\t\t   f(xk)\t\t\t\t   erro\n")
 
     # enquanto não for alcançada a precisão desejada e 
     # k for menor que a maxiter o loop acontece
@@ -53,7 +53,7 @@ def main():
     arquivo.write("\t" + str(k) + "\t")
     arquivo.write(str(xk) + "\t")
     arquivo.write(str(funcao(xk)) + "\t")
-    arquivo.write(str(abs(xk - raiz)) + "\n")
+    arquivo.write(str(abs(float(xk) - raiz)) + "\n")
 
     arquivo.close()
 
@@ -66,10 +66,16 @@ def m_das_secantes(k, xk, xr, xrr, arquivo, raiz):
     fxk = funcao(xk)
     fxr = funcao(xr)
 
-    arquivo.write("\t" + str(k) + "\t")
-    arquivo.write(str(xk) + "\t")
-    arquivo.write(str(fxk) + "\t")
-    arquivo.write(str(abs(xk - raiz)) + "\n")
+    if xk == 0.0 and fxk == 3.0 or xk == -1.0 and fxk == -16.0:
+        arquivo.write("\t" + str(k) + "\t")
+        arquivo.write(str(xk) + "000000000000000" + "\t")
+        arquivo.write(str(fxk) + "000000000000000" + "\t")
+        arquivo.write(str(abs(float(xk) - raiz)) + "\n")
+    else:
+        arquivo.write("\t" + str(k) + "\t")
+        arquivo.write(str(xk) + "\t")
+        arquivo.write(str(fxk) + "\t")
+        arquivo.write(str(abs( - raiz)) + "\n")
 
     # xrr == x (k - 2)
     xrr = xr 
