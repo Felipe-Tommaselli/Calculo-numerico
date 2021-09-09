@@ -10,38 +10,48 @@ def main():
 
     maxiter = input("Insira um valor para o MAXITER que você deseja:\n")
 
+    #* INTERVALO [-1, 0]
+
     k = 0 # começando com k igual a 0 e incrementando a cada iteração
-    xk = -1 # tendo o primeiro intervalo de [-1, 0] e estabelecendo xk = -1 e xr = 0
-    xr = 0 # xr, sendo r = k - 1 
-    mod = abs(xk - xr)
+    xk = -1. # tendo o primeiro intervalo de [-1, 0] e estabelecendo xk = -1 e xr = 0
+    xr = 0. # xr, sendo r = k - 1 
     raiz = -pow(3, 0.5)/3.
 
+    # cabeçalho do arquivo texto
     arquivo.write("No intervalo [-1, 0]\n")
-    arquivo.write("\tk\t     xk\t\t   f(xk)\t   f'(xk)\t   erro\n")
+    arquivo.write("\tk\t\t     xk\t\t\t\t   f(xk)\t\t\t\t   f'(xk)\t\t\t\t   erro\n")
+
+    # enquanto não for alcançada a precisão desejada e
+    # k for menor que a maxiter o loop acontece
+    while(abs(xk - xr) > 0.000001 and k <= int(maxiter)): 
+        k, xk, xr, arquivo = metNewton(k, xk, xr, arquivo, raiz)                          
+
+    arquivo.write("\t" + str(k) + "\t")
+    arquivo.write(str(xk) + "\t")
+    arquivo.write(str(funcao(xk)) + "\t")
+    arquivo.write(str(derivada(xk)) + "\t")
+    arquivo.write(str(abs(float(xk) - raiz)) + "\n")
+
+    #* INTERVALO [0, 1]
+
+    k = 0 # começando com k igual a 0 e incrementando a cada iteração
+    xk = 0. # tendo o primeiro intervalo de [-1, 0] e estabelecendo xk = -1 e xr = 0
+    xr = 1. # xr, sendo r = k - 1 
+    raiz = pow(3, 0.5)/3.
+
+    arquivo.write("\n\nNo intervalo [0,1]\n")
+    arquivo.write("\tk\t\t     xk\t\t\t\t   f(xk)\t\t\t\t   f'(xk)\t\t\t\t   erro\n")
 
     # enquanto não for alcançada a precisão desejada e 
     # k for menor que a maxiter o loop acontece
-    while(mod > 0.000001 and k <= int(maxiter)): 
-        fx = funcao(xk)
-        dx = derivada(xk)
+    while(abs(xk - xr) > 0.000001 and k <= int(maxiter)): 
+        k, xk, xr, arquivo = metNewton(k, xk, xr, arquivo, raiz)                          
 
-        arquivo.write("\t" + str(k) + "\t")
-        arquivo.write(str(xk) + "\t\t")
-        arquivo.write(str(fx) + "\t")
-        arquivo.write(str(dx) + "\t")
-        arquivo.write(str(abs(xk - raiz)) + "\n")
-
-        xr = xk # xr atribui o valor de xk, ou seja, x(k-1) atribui o valor de xk 
-        xk = xk - (fx / dx) # xk atribui o próximo valor a ser calculado
-        mod = abs(xk - xr) # precisão recalculada
-
-        k += 1 
-    
     arquivo.write("\t" + str(k) + "\t")
-    arquivo.write(str(xk) + "\t\t")
-    arquivo.write(str(fx) + "\t")
-    arquivo.write(str(dx) + "\t")
-    arquivo.write(str(abs(xk - raiz)) + "\n")
+    arquivo.write(str(xk) + "\t")
+    arquivo.write(str(funcao(xk)) + "\t")
+    arquivo.write(str(derivada(xk)) + "\t")
+    arquivo.write(str(abs(float(xk) - raiz)) + "\n")
 
     arquivo.close()
 
@@ -52,6 +62,32 @@ def funcao(x): # define a função que queremos aplicar o método de Newton, ten
 def derivada(x): # define a derivada da função que queremos aplicar o método de Newton, tendo como entrada x 
     dx = 15*pow(x, 4) - 36*pow(x, 3) + 6*pow(x, 2) - 12*x -1 
     return dx # retorna o resultado da derivada da função 
+
+def metNewton(k, xk, xr, arquivo, raiz):
+    print(k)
+    fx = funcao(xk)
+    dx = derivada(xk)
+
+    if xk == 0.0 and fx == 3.0 or xk == -1.0 and fx == -16.0:
+        arquivo.write("\t" + str(k) + "\t")
+        arquivo.write(str(xk) + "000000000000000" + "\t")
+        arquivo.write(str(fx) + "000000000000000" + "\t")
+        arquivo.write(str(dx) + "000000000000000" + "\t")
+        arquivo.write(str(abs(float(xk) - raiz)) + "\n")
+    else:
+        arquivo.write("\t" + str(k) + "\t")
+        arquivo.write(str(xk) + "\t")
+        arquivo.write(str(fx) + "\t")
+        arquivo.write(str(dx) + "\t")
+        arquivo.write(str(abs( - raiz)) + "\n")
+
+    xr = xk # xr = x(k-1)
+    xk = xk - (fx/dx)
+    erro = abs(xk - xr)
+
+    k += 1
+
+    return k, xk, xr, arquivo
 
 if __name__ == "__main__": # definição da função main
     main()
