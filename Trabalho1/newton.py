@@ -35,8 +35,8 @@ def main():
     #* INTERVALO [0, 1]
 
     k = 0 # começando com k igual a 0 e incrementando a cada iteração
-    xk = 0. # tendo o primeiro intervalo de [-1, 0] e estabelecendo xk = -1 e xr = 0
-    xr = 1. # xr, sendo r = k - 1 
+    xk = 1. # tendo o primeiro intervalo de [-1, 0] e estabelecendo xk = -1 e xr = 0
+    xr = 0. # xr, sendo r = k - 1 
     raiz = pow(3, 0.5)/3.
 
     arquivo.write("\n\nNo intervalo [0,1]\n")
@@ -68,7 +68,7 @@ def metNewton(k, xk, xr, arquivo, raiz):
     fx = funcao(xk)
     dx = derivada(xk)
 
-    if xk == 0.0 and fx == 3.0 or xk == -1.0 and fx == -16.0:
+    if xr == 0.0 and funcao(xr) == 3.0 or xk == -1.0 and fx == -16.0:
         arquivo.write("\t" + str(k) + "\t")
         arquivo.write(str(xk) + "000000000000000" + "\t")
         arquivo.write(str(fx) + "000000000000000" + "\t")
@@ -79,11 +79,14 @@ def metNewton(k, xk, xr, arquivo, raiz):
         arquivo.write(str(xk) + "\t")
         arquivo.write(str(fx) + "\t")
         arquivo.write(str(dx) + "\t")
-        arquivo.write(str(abs( - raiz)) + "\n")
+        arquivo.write(str(abs(float(xk) - raiz)) + "\n")
 
+
+    print(f"xk = {xk}\nfx = {fx}\ndx = {dx}\nxr = {xr}\n")
+    #print(f'{aluno:<{tamanho}}')
+    
     xr = xk # xr = x(k-1)
-    xk = xk - (fx/dx)
-    erro = abs(xk - xr)
+    xk = xr - (fx/dx)
 
     k += 1
 

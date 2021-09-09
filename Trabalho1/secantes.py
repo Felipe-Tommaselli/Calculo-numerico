@@ -70,12 +70,12 @@ def m_das_secantes(k, xk, xr, xrr, arquivo, raiz):
         arquivo.write("\t" + str(k) + "\t")
         arquivo.write(str(xk) + "000000000000000" + "\t")
         arquivo.write(str(fxk) + "000000000000000" + "\t")
-        arquivo.write(str(abs(float(xk) - raiz)) + "\n")
+        arquivo.write(str(abs(xk - raiz)) + "\n")
     else:
         arquivo.write("\t" + str(k) + "\t")
         arquivo.write(str(xk) + "\t")
         arquivo.write(str(fxk) + "\t")
-        arquivo.write(str(abs( - raiz)) + "\n")
+        arquivo.write(str(abs(xk - raiz)) + "\n")
 
     # xrr == x (k - 2)
     xrr = xr 
