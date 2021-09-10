@@ -41,7 +41,7 @@ def main():
     del listak[:]
     del listaxk[:]
     del listafxk[:]
-    del listaxk[:]
+    del listaerro[:]
 
     k = 0 # começando com k igual a 0 e incrementando a cada iteração
     xk = 0. # tendo o primeiro intervalo de [-1, 0] e estabelecendo xk = -1 e xr = 0
@@ -69,16 +69,13 @@ def funcao(x): # define a função que queremos aplicar o método de Newton, ten
     return fx # retorna o resultado da função 
 
 def m_das_secantes(k, xk, xr, xrr, listak, listaxk, listafxk, listaerro, raiz):
-    print(k)
 
     # xrr == x (k - 2.,m)
     xrr = xr 
     # xr == x (k-1)
     xr = xk 
-    
     # atualiza xk com base no xr e xrr
     xk = (funcao(xr)*xrr - funcao(xrr)*xr)/(funcao(xr) - funcao(xrr))
-
     k += 1
     
     listak.append(k)
