@@ -91,20 +91,15 @@ def formatar_arquivo(arquivo, listak, listaxk, listafxk, listaerro, intervalo):
     arquivo.write("\tk\t     xk\t\t\t\t   f(xk)\t\t\t\t   erro\n")
 
     for k in listak:
-        xk = listaxk[k]
-        fxk = listafxk[k]
-        erro = listaerro[k]
-                
-        if xk == 0.0 and fxk == 3.0 or xk == -1.0 and fxk == -16.0:
-            arquivo.write("\t" + str(k) + "\t")
-            arquivo.write(str(xk) + "000000000000000" + "\t")
-            arquivo.write(str(fxk) + "000000000000000" + "\t")
-            arquivo.write(str(erro) + "\n")
-        else:
-            arquivo.write("\t" + str(k) + "\t")
-            arquivo.write(str(xk) + "\t")
-            arquivo.write(str(fxk) + "\t")
-            arquivo.write(str(erro) + "\n")
+
+        xk = format(listaxk[k], '.8f')
+        fxk = format(listafxk[k], '.8f')
+        erro = format(listaerro[k], '.8f')
+
+        arquivo.write("\t" + str(k) + "\t")
+        arquivo.write(str(xk) + "\t")
+        arquivo.write(str(fxk) + "\t")
+        arquivo.write(str(erro) + "\n")
 
 
 if __name__ == "__main__": # definição da função main
