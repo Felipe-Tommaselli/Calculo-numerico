@@ -64,7 +64,6 @@ def derivada(x): # define a derivada da função que queremos aplicar o método 
     return dx # retorna o resultado da derivada da função 
 
 def metNewton(k, xk, xr, arquivo, raiz):
-    print(k)
     fx = funcao(xk)
     dx = derivada(xk)
 
@@ -80,10 +79,6 @@ def metNewton(k, xk, xr, arquivo, raiz):
         arquivo.write(str(fx) + "\t")
         arquivo.write(str(dx) + "\t")
         arquivo.write(str(abs(float(xk) - raiz)) + "\n")
-
-
-    print(f"xk = {xk}\nfx = {fx}\ndx = {dx}\nxr = {xr}\n")
-    #print(f'{aluno:<{tamanho}}')
     
     xr = xk # xr = x(k-1)
     xk = xr - (fx/dx)

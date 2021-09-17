@@ -42,7 +42,7 @@ def main():
                                                                                                maxiter, precisao)
 
     if mensagem == "success":
-        formatar_arquivo(arquivo, lista_k, lista_a, lista_b, lista_xk, lista_fxk, lista_erro, "[-1,0]")
+        formatar_arquivo(arquivo, lista_k, lista_a, lista_b, lista_xk, lista_fxk, lista_er_ro, "[-1,0]")
 
     # * INTERVALO [0,1]
 
