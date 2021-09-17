@@ -118,14 +118,14 @@ def metodo_bissecao(a, b, xk, xr, lista_k, lista_a, lista_b, lista_xk, lista_fxk
 
 def formatar_arquivo(arquivo, lista_k, lista_a, lista_b, lista_xk, lista_fxk, lista_erro, intervalo):
     arquivo.write(f"\nNo intervalo {intervalo}\n")
-    arquivo.write("\tk\t    a\t\t\t\t   b\t\t\t\t   xk\t\t\t\t   f(xk)\t\t\t\t   erro\n")
+    arquivo.write("\tk\t    a\t\t   b\t\t   xk\t\t   f(xk)\t   erro\n")
 
     for k in lista_k:
-        a = lista_a[k-1]
-        b = lista_b[k-1]
-        xk = lista_xk[k-1]
-        fxk = lista_fxk[k-1]
-        erro = lista_erro[k-1]
+        a = format(lista_a[k-1], '.8f')
+        b = format(lista_b[k-1], '.8f')
+        xk = format(lista_xk[k-1], '.8f')
+        fxk = format(lista_fxk[k-1], '.8f')
+        erro = format(lista_erro[k-1], '.8f')
 
         arquivo.write("\t" + str(k) + "\t")
         arquivo.write(str(a) + "\t")
