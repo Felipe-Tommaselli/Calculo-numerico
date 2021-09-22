@@ -8,8 +8,6 @@ def main():
     arquivo = open("bisseção_saida.txt", "w")
     arquivo.write("Método da Bisseção:\n")
 
-    #maxiter = input("Insira um valor para o MAXITER que você deseja:\n")
-
     lista_k = list()
     lista_a = list()
     lista_b = list()
@@ -19,15 +17,15 @@ def main():
 
     # * INTERVALO [-1,0]
 
-    a = -1.
-    b = 0.
+    a = -1.     # limite inferior do intervalo
+    b = 0.      # limite superior do intervalo
     xk = a
     xr = 0.  # xr, sendo r = k - 1
-    raiz = -pow(3, 0.5) / 3.
-    maxiter = 100
-    precisao = 0.000001
+    raiz = -pow(3, 0.5) / 3.    # raiz calculada no wolfram
+    maxiter = 100   # Máximo de iterações (valor arbitrário)
+    precisao = 0.000001     # Para ter um erro < 10^-6
 
-    lista_k.append(1)
+    lista_k.append(0)   # Começa sempre em k=0
     lista_a.append(a)
     lista_b.append(b)
     lista_xk.append(xk)
@@ -42,10 +40,11 @@ def main():
                                                                                                maxiter, precisao)
 
     if mensagem == "success":
-        formatar_arquivo(arquivo, lista_k, lista_a, lista_b, lista_xk, lista_fxk, lista_er_ro, "[-1,0]")
+        formatar_arquivo(arquivo, lista_k, lista_a, lista_b, lista_xk, lista_fxk, lista_erro, "[-1,0]")
 
     # * INTERVALO [0,1]
 
+    # deleta o conteúdo de todas as listas
     del lista_k[:]
     del lista_a[:]
     del lista_b[:]
@@ -53,13 +52,13 @@ def main():
     del lista_fxk[:]
     del lista_erro[:]
 
-    a = 0.
-    b = 1.
+    a = 0.  # limite inferior do intervalo
+    b = 1.  # limite superior do intervalo
     xk = a
     xr = 1.  # xr, sendo r = k - 1
-    raiz = pow(3, 0.5) / 3.
+    raiz = pow(3, 0.5) / 3. # raiz calculada no wolfram
 
-    lista_k.append(1)
+    lista_k.append(0)
     lista_a.append(a)
     lista_b.append(b)
     lista_xk.append(xk)
@@ -79,16 +78,18 @@ def main():
     arquivo.close()
 
 
-
-def funcao(x):  # define a função que queremos aplicar o método de Newton, tendo como entrada x
+# define a função que queremos aplicar o método de Newton, tendo como entrada x
+def funcao(x):
     fx = 3 * pow(x, 5) - 9 * pow(x, 4) + 2 * pow(x, 3) - 6 * pow(x, 2) - x + 3
     return fx  # retorna o resultado da função
 
 
-
+# aplica o método da bisseção
 def metodo_bissecao(a, b, xk, xr, lista_k, lista_a, lista_b, lista_xk, lista_fxk, lista_erro, raiz, maxiter, precisao):
 
-    k = 1
+    k = 0
+
+    # condições de parada: atinge a precisão desejada, xk já é raiz ou excede o máximo de iterações
     while abs(xk - xr) > precisao and funcao(xk) != 0 and k <= int(maxiter):
         xr = xk
         xk = float((a+b)/2)
@@ -121,11 +122,11 @@ def formatar_arquivo(arquivo, lista_k, lista_a, lista_b, lista_xk, lista_fxk, li
     arquivo.write("\tk\t    a\t\t   b\t\t   xk\t\t   f(xk)\t   erro\n")
 
     for k in lista_k:
-        a = format(lista_a[k-1], '.8f')
-        b = format(lista_b[k-1], '.8f')
-        xk = format(lista_xk[k-1], '.8f')
-        fxk = format(lista_fxk[k-1], '.8f')
-        erro = format(lista_erro[k-1], '.8f')
+        a = format(lista_a[k], '.8f')
+        b = format(lista_b[k], '.8f')
+        xk = format(lista_xk[k], '.8f')
+        fxk = format(lista_fxk[k], '.8f')
+        erro = format(lista_erro[k], '.8f')
 
         arquivo.write("\t" + str(k) + "\t")
         arquivo.write(str(a) + "\t")
