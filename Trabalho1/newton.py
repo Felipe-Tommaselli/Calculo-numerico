@@ -1,4 +1,5 @@
-''' Grupo30:
+''' TRABALHO #1 
+Grupo30:
 Felipe Andrade Garcia Tommaselli- 11800910
 Gianluca Capezzuto Sardinha- 11876933 
 Pedro Cavalini- 11801007

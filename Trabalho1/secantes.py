@@ -1,4 +1,5 @@
-''' Grupo30:
+''' TRABALHO #1 
+Grupo30:
 Felipe Andrade Garcia Tommaselli- 11800910
 Gianluca Capezzuto Sardinha- 11876933 
 Pedro Cavalini- 11801007
@@ -128,5 +129,5 @@ def formatar_arquivo(arquivo, listak, listaxk, listafxk, listaerro, intervalo):
         arquivo.write(str(erro) + "\n")
 
 
-if __name__ == "__main__": # definição da função main
+if __name__ == "__main__": # chama a função main
     main()
