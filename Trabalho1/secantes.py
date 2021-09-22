@@ -120,7 +120,7 @@ def formatar_arquivo(arquivo, listak, listaxk, listafxk, listaerro, intervalo):
         xk = format(listaxk[k], '.8f')
         fxk = format(listafxk[k], '.8f')
         erro = format(listaerro[k], '.8f')
-
+    
         # escreves os valores no arquivo texto com a formatação querida
         arquivo.write("\t" + str(k) + "\t")
         arquivo.write(str(xk) + "\t")
