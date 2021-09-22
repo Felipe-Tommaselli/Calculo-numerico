@@ -99,7 +99,7 @@ def funcao(x):
     return fx  # retorna o resultado da função
 
 
-# aplica o método da bisseção
+# aplica o método da bisseção a partir das entradas, armazenando as saidas nas listas
 def metodo_bissecao(a, b, xk, xr, lista_k, lista_a, lista_b, lista_xk, lista_fxk, lista_erro, raiz, maxiter, precisao):
 
     k = 0
