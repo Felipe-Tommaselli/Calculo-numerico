@@ -1,4 +1,4 @@
-MÃ©todo de Newton:
+Método de Newton:
 
 No intervalo [-1,0]
 	k	     xk		   f(xk)	 f'(xk)		   erro
