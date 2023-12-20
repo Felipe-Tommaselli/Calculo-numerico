@@ -1,4 +1,4 @@
-# **Calculo numérico** / **Numerical Analysis**
+# **Calculo numérico** / **Numerical Analysis** (2021)
 
 Compilado de programas, anotações e atividades da disciplina de Cálculo Numérico (sme0300) oferecida pelo ICMC-USP. Todos os programas desenvolvidos na disciplina foram feitos em linguagem python e possuem apenas fins educacionais.
 
